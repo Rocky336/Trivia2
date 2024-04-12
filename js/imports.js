@@ -6,5 +6,6 @@ import * as DICE from './dice.js'
 import * as PLAYER from './player.js'
 import * as HUD from './hud.js'
 import * as QUIZ from './quiz.js'
+import * as BILLBOARD from './billboard.js'
 
-export {THREE, MODEL, BOARD, TEXT, DICE, PLAYER, HUD, QUIZ}
+export {THREE, MODEL, BOARD, TEXT, DICE, PLAYER, HUD, QUIZ, BILLBOARD}
