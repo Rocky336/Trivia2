@@ -13,6 +13,8 @@ class Player extends THREE.Group{
 
         //this.model = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1),new THREE.MeshPhysicalMaterial({color: 0xFF00FF, metalness: 0, roughness: 0.5 }));
         this.model = new Model("Walking");
+        this.model.loadAnimation("Defeated");
+        this.model.loadAnimation("Hip Hop Dancing");
         this.add(this.model);
         this.pos = 0;
         this.steps = 0;
@@ -38,9 +40,9 @@ class Player extends THREE.Group{
      * @param {number} dt 
      */
     update(dt){
+        if(this.model.animation) this.model.update(dt);
         if(this.steps>0){                   //If it has steps to do
             this.timer += dt;               //Increments local step timer
-            this.model.update(dt);
             this.model.lookAt(new THREE.Vector3(0,this.model.position.y,0))
             this.model.rotateY(-Math.PI*.5);
             this.model.position.lerp(new THREE.Vector3(Math.sin(offset*(this.pos+this.timer/1))*7,this.model.position.y, Math.cos(offset*(this.pos+this.timer/1))*7),this.timer/1);     //lerps in 1 second

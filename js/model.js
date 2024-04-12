@@ -18,6 +18,13 @@ class Model extends THREE.Group{
         });
     }
 
+    loadAnimation(modelName){
+        let loader = new GLTFLoader();
+        loader.load(`./../assets/models/${modelName}.glb`,(gltf)=>{     //Loads everything
+            this.animations.push((gltf.animations[0]));
+        });
+    }
+
     /**
      * Starts animation in animations with the given number
      * @param {number} number 
@@ -28,7 +35,7 @@ class Model extends THREE.Group{
     }
 
     stopAnimation(){
-        this.mixer.clipAction(this.animation).stop();
+        if(this.animation) this.mixer.clipAction(this.animation).stop();
         this.animation = null;
     }
 
@@ -41,7 +48,7 @@ class Model extends THREE.Group{
      * @param {number} dt 
      */
     update(dt){
-        if(this.animation) this.mixer.update(dt);
+        this.mixer.update(dt);
     }
 }
 

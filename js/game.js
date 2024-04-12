@@ -114,6 +114,7 @@ window.addEventListener("DOMContentLoaded",function(){
         if(gameStat=="QUESTION"){           //If it's during quiz
             //If player doesn't get the answer
             if(!quiz.select(( event.clientX / window.innerWidth ) * 2 - 1,- ( event.clientY / window.innerHeight ) * 2 + 1)){
+                player.model.startAnimation(1);
                 //Lives and hud are updated
                 lives--;
                 hud.updateLives(lives);
@@ -121,6 +122,7 @@ window.addEventListener("DOMContentLoaded",function(){
                 if(lives==0) gameStat="LOSE";
 
             }else{ // If player gets it right
+                player.model.startAnimation(2);
                 //Squares are updated
                 squares[player.pos%6] = true;
                 hud.updateSquares(mats[player.pos%6].color);
@@ -147,6 +149,7 @@ window.addEventListener("DOMContentLoaded",function(){
             },1000);
 
         }else if(gameStat=="WAIT"){     //If it's during the wait phase
+            player.model.stopAnimation();
             gameStat = "ROLLMOVE";      //Change state
             billboard.changeStat(gameStat); //Make billboard text change
 
